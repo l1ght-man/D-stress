@@ -1,0 +1,5 @@
+{
+    "name": "heavy",
+    "attack_type": "post_flood",
+    "description": "Heavy load - large POST flood"
+}

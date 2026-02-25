@@ -1,0 +1,34 @@
+version: '3.8'
+
+services: 
+  target: #target service
+      build :
+        context: .
+        dockerfile : Dockerfile.target
+      ports:
+        - "80:80" #http
+      volumes:
+        - ./logs:/app/logs
+  attacker :
+      cap_add:
+        - NET_RAW
+        - NET_ADMIN #attacker service
+      build:
+        context: .
+        dockerfile: Dockerfile.attacker
+      depends_on:
+        - target
+      environment:
+        TARGET_URL : http://target:80/
+        ATTACK_TYPE: get_flood
+        STATS_ENABLED: "false" 
+        STATS_SAVE: "false" 
+        TARGET_ENDPOINT: /api/data
+        PAYLOAD_SIZE_KB: 10  
+        SLOWLORIS_CONNECTIONS: 15 
+        SLOWLORIS_INTERVAL: 15 
+        SYN_FLOOD_RPS: 100
+        UDP_FLOOD_RPS: 1000
+      #deploy:
+       # replicas : 15 # how many attacker containers in case no CLI modify
+      restart : on-failure
