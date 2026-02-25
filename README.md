@@ -205,8 +205,14 @@ Check that port 80 is not in use by another service.
 
 ## License
 
-MIT License - see LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE).
 
 ## Disclaimer
 
 This tool is for educational purposes only. The authors are not responsible for any misuse or damage caused by this software. Only use on systems you own or have explicit written permission to test. Unauthorized testing against third-party systems may violate laws in your jurisdiction.
+
+## Additional Resources
+
+- [Ethics and Responsible Use Guidelines](ETHICS.md)
+- [Docker Documentation](https://docs.docker.com/)
+- [Python Documentation](https://docs.python.org/3/)
