@@ -21,8 +21,8 @@ D-stress is a learning tool that helps you understand how DDoS attacks work by s
 ### CLI Help
 ![CLI Help](images/cli-help.png)
 
-### Attack Running - Live Metrics
-![Attack Running](images/attack-running.png)
+### Starting an Attack
+![Attack Starting](images/attack-starting.png)
 
 ### Container Status
 ![Status](images/status.png)
