@@ -16,6 +16,27 @@ D-stress is a learning tool that helps you understand how DDoS attacks work by s
 - Safety features that block attacks on public IPs by default
 - Simple command-line interface
 
+## Screenshots
+
+### CLI Help
+![CLI Help](images/cli-help.png)
+
+### Starting an Attack
+![Attack Starting](images/attack-starting.png)
+
+### Attack Running - Live Metrics
+![Attack Running](images/attack-running.png)
+
+### Container Status
+![Status](images/status.png)
+
+### Attack Report
+![Report](images/report.png)
+
+### Live Dashboard
+![Live Dashboard](images/live-dashboard.png)
+*Real-time updating metrics during an attack*
+
 ## Requirements
 
 - [Docker](https://www.docker.com/products/docker-desktop/) and [Docker Compose](https://docs.docker.com/compose/install/)

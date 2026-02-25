@@ -48,11 +48,12 @@ def report_command(args):
         report_data = {
             'timestamp': datetime.now().isoformat(),
             'status': 'active',
-            'source':'target_server',
-            'total_requests':metrics.get('total_requests',0),
-            'total_errors':metrics.get('total_errors',0),
-            'active_attackers': metrics.get('active_attackers',0),
-            'uptime_seconds': metrics.get('uptime_seconds',0)
+            'source': 'target_server',
+            'total_requests': metrics.get('total_requests', 0),
+            'total_errors': metrics.get('total_errors', 0),
+            'active_attackers': metrics.get('active_attackers', 0),
+            'uptime_seconds': metrics.get('uptime_seconds', 0),
+            'cpu_percent': metrics.get('cpu_percent', 0)
         }
     else:
         attacker_stats = read_attacker_logs()
@@ -85,21 +86,23 @@ def report_command(args):
             output += f"{report_data['timestamp']},{report_data['status']},{report_data['message']}"
     elif args.format == 'json':
         output = json.dumps(report_data, indent=2)
-    else: # text
+    else:  # text
         output = f"""
-                +{'='*60}+
-                |  D-stress Attack Report
-                +{'='*60}+
-                |  Timestamp: {report_data['timestamp']}
-                |  Status: {report_data['status']}
-                |  Source: {report_data.get('source', 'N/A')}
-                """
-        if report_data['status'] in ['active','completed']:
++{'='*60}+
+|  D-stress Attack Report
++{'='*60}+
+|  Timestamp: {report_data['timestamp']}
+|  Status: {report_data['status']}
+|  Source: {report_data.get('source', 'N/A')}
+"""
+        if report_data['status'] in ['active', 'completed']:
             output += f"""|  Total Requests: {report_data['total_requests']:,}
-                          |  Total Errors: {report_data['total_errors']:,}
-                        """
+|  Total Errors: {report_data['total_errors']:,}
+"""
             if 'active_attackers' in report_data:
                 output += f"|  Active Attackers: {report_data['active_attackers']}\n"
+            if 'cpu_percent' in report_data:
+                output += f"|  Target CPU: {report_data['cpu_percent']:.1f}%\n"
             if 'attackers_count' in report_data:
                 output += f"|  Attackers Count: {report_data['attackers_count']}\n"
         else:

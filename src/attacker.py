@@ -66,22 +66,22 @@ def send_reports():
 logger.info(f"Attacker {attacker_id} starting, targeting {target_url}")
 
 def write_stats_to_log():
-    """write stast to json log file if stats_save is enabled"""
+    """write stats to json log file if stats_save is enabled"""
 
     if not stats_save:
         return
     log_file = f"logs/attacker_{attacker_id}.json"
     stats_data = {
-        'attacker_id':attacker_id,
+        'attacker_id': attacker_id,
         'timestamp': time.time(),
         'requests_sent': stats['requests_sent'],
         'errors': stats['errors'],
-        'attack_type':attack_type
+        'attack_type': attack_type
     }
     try:
         with open(log_file, 'w') as f:
-            json.dump(stats_data, f , indent=2)
-    except Exception as e :
+            json.dump(stats_data, f, indent=2)
+    except Exception as e:
         logger.debug(f"Failed to write stats: {e}")
 
 
