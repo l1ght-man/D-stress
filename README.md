@@ -171,17 +171,17 @@ Predefined configurations for quick testing:
 
 ```
 ┌─────────────────┐     ┌─────────────────┐
-│   CLI Tool      │────▶│  docker-compose │
+│   CLI Tool      │────>│  docker-compose │
 │  (d-stress)     │     │   orchestration │
 └─────────────────┘     └────────┬────────┘
                                  │
               ┌──────────────────┼──────────────────┐
               │                  │                  │
-     ┌────────▼────────┐ ┌──────▼───────┐ ┌───────▼───────┐
-     │   Target        │ │  Attacker 1  │ │  Attacker N   │
-     │  (Flask +       │ │  (Python)    │ │  (Python)     │
-     │   Gunicorn)     │ │              │ │               │
-     └─────────────────┘ └──────────────┘ └───────────────┘
+     ┌────────▼────────┐  ┌──────▼───────┐  ┌───────▼───────┐
+     │   Target        │  │  Attacker 1  │  │  Attacker N   │
+     │  (Flask +       │  │  (Python)    │  │  (Python)     │
+     │   Gunicorn)     │  │              │  │               │
+     └─────────────────┘  └──────────────┘  └───────────────┘
 ```
 
 ## Project Structure
