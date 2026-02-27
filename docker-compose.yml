@@ -17,16 +17,16 @@ services:
       depends_on:
         - target
       environment:
-        TARGET_URL : http://target:80/
-        ATTACK_TYPE: get_flood
-        STATS_ENABLED: "false" 
-        STATS_SAVE: "false" 
-        TARGET_ENDPOINT: /api/data
-        PAYLOAD_SIZE_KB: 10  
-        SLOWLORIS_CONNECTIONS: 15 
-        SLOWLORIS_INTERVAL: 15 
-        SYN_FLOOD_RPS: 100
-        UDP_FLOOD_RPS: 1000
+        TARGET_URL: ${TARGET_URL:-http://target:80/}
+        ATTACK_TYPE: ${ATTACK_TYPE:-get_flood}
+        STATS_ENABLED: ${STATS_ENABLED:-false}
+        STATS_SAVE: ${STATS_SAVE:-false}
+        TARGET_ENDPOINT: ${TARGET_ENDPOINT:-/api/data}
+        PAYLOAD_SIZE_KB: ${PAYLOAD_SIZE_KB:-10}
+        SLOWLORIS_CONNECTIONS: ${SLOWLORIS_CONNECTIONS:-15}
+        SLOWLORIS_INTERVAL: ${SLOWLORIS_INTERVAL:-15}
+        SYN_FLOOD_RPS: ${SYN_FLOOD_RPS:-100}
+        UDP_FLOOD_RPS: ${UDP_FLOOD_RPS:-1000}
       #deploy:
        # replicas : 15 # how many attacker containers in case no CLI modify
       restart : on-failure

@@ -1,5 +1,6 @@
 {
     "name": "medium",
-    "attack_type":"post_flood",
-    "description": "Medium load - POST flood"
+    "attack_type": "post_flood",
+    "description": "Medium load - POST flood",
+    "attackers": 15
 }

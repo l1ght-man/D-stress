@@ -1,5 +1,6 @@
 {
     "name": "light",
-    "attack_type":"get_flood",
-    "description": "Light load - basic connectivity test"
+    "attack_type": "get_flood",
+    "description": "Light load - basic connectivity test",
+    "attackers": 5
 }
