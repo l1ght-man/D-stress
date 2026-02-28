@@ -34,6 +34,29 @@ D-stress is a learning tool that helps you understand how DDoS attacks work by s
 ![Live Dashboard](images/live-dashboard.png)
 *Real-time updating metrics during an attack*
 
+## Demo
+
+### Attack Simulation in Action
+![Attack Demo](New%20folder/attack_demo.mp4)
+*Video demonstration of a DDoS attack simulation against a local test server*
+
+## Test Environment
+
+The demo was recorded using the following setup:
+
+| Component | Specification |
+|-----------|---------------|
+| **Attacker Machine** | Intel Core i5-14th Gen, 16GB RAM, NVIDIA RTX 3050 6GB |
+| **Target Machine** | Intel Core i5-11th Gen, 16GB RAM, NVIDIA RTX 4050 8GB |
+| **Network** | Local network (private IP range) |
+| **Containers** | Docker-based attacker orchestration |
+
+This setup demonstrates how distributed containerized attacks can generate significant load even on consumer-grade hardware, highlighting the importance of proper rate limiting, connection timeouts, and application-layer protections in production environments.
+
+## Transparency
+
+AI assistance was used throughout development for code understanding and optimization. The core ideas, architecture, and design decisions are entirely my own.
+
 ## Requirements
 
 - [Docker](https://www.docker.com/products/docker-desktop/) and [Docker Compose](https://docs.docker.com/compose/install/)

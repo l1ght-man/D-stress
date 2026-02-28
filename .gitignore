@@ -34,3 +34,7 @@ logs/attacker_*.json
 
 # private future  ideas
 /ideas
+
+# unedited videos
+Video.mp4
+Video1.mp4
