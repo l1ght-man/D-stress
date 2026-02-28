@@ -47,7 +47,7 @@ The demo was recorded using the following setup:
 | Component | Specification |
 |-----------|---------------|
 | **Attacker Machine** | Intel Core i5-14th Gen, 16GB RAM, NVIDIA RTX 3050 6GB |
-| **Target Machine** | Intel Core i5-11th Gen, 16GB RAM, NVIDIA RTX 4050 8GB |
+| **Target Machine** | Intel Core i5-12th Gen, 16GB RAM, NVIDIA RTX 4060 TI 8GB |
 | **Network** | Local network (private IP range) |
 | **Containers** | Docker-based attacker orchestration |
 
